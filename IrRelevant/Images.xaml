@@ -1,0 +1,9 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <BitmapImage UriSource="Icons/book.jpg" x:Key="book"></BitmapImage>
+    <BitmapImage UriSource="Icons/link.jpg" x:Key="link"></BitmapImage>
+    <BitmapImage UriSource="Icons/video.jpg" x:Key="video"></BitmapImage>
+    <BitmapImage UriSource="Icons/unknown.jpg" x:Key="unknown"></BitmapImage>
+    <BitmapImage UriSource="Icons/expand.png" x:Key="expand"></BitmapImage>
+    <BitmapImage UriSource="Icons/collapse.png" x:Key="collapse"></BitmapImage>
+</ResourceDictionary>
