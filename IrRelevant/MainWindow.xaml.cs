@@ -23,6 +23,15 @@ namespace IrRelevant
         public MainWindow()
         {
             InitializeComponent();
+
+            
+            
         }
+
+        private string insertPicture(string path, int width)
+        {
+            return "<img src=\"file://" + AppDomain.CurrentDomain.BaseDirectory + path + "\" width=\"" + Width + "px height=\"100px\"\"/>";
+        }
+
     }
 }
