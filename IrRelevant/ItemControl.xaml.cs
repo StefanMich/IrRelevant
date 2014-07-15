@@ -12,28 +12,55 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using IrRelevant.Model;
 
 namespace IrRelevant
 {
     /// <summary>
     /// Interaction logic for ItemControl2.xaml
     /// </summary>
-    public partial class ItemControl2 : UserControl
+    public partial class ItemControl : UserControl
     {
         private bool isExpanded = true;
         private double expandedHeight;
 
-        public ItemControl2()
+
+        public ItemControl()
         {
             InitializeComponent();
             expandedHeight = ContentGrid.Height;
         }
+        public ItemControl(string title, string content, IconPlaceholder icon):this()
+        {
+            Header.Content = title;
+            Icon.Source = getBitmap(icon);
+        }
 
+       
+
+        private static BitmapImage getBitmap(IconPlaceholder icon)
+        {
+            string uri;
+            switch (icon)
+            {
+                case IconPlaceholder.Book:
+                    uri = "book";
+                    break;
+                case IconPlaceholder.Video:
+                    uri = "video";
+                    break;
+                case IconPlaceholder.List:
+                    uri = "link";
+                    break;
+                default:
+                    uri = "unknown";
+                    break;
+            }
+            return (BitmapImage)Application.Current.Resources[uri];
+        }
 
         private void collapseButton_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            
-
             if (isExpanded)
             {
                 isExpanded = false;
