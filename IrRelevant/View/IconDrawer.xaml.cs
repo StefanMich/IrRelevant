@@ -35,10 +35,7 @@ namespace IrRelevant
 
             
         }
-
         
-
-
         private void Icon_MouseUp(object sender, MouseButtonEventArgs e)
         {
             ToggleOpen();
@@ -77,7 +74,7 @@ namespace IrRelevant
             Icon.Source = GetSource((sender as IconImage).IconEnum);
         }
 
-        private void setIcon(IconEnum icon)
+        public void SetIcon (IconEnum icon)
         {
             currentIcon = icon;
             Icon.Source = GetSource(icon);
