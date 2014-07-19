@@ -8,6 +8,13 @@ namespace IrRelevant.Model
 {
     public class Mode
     {
+        public Mode(string title)
+        {
+            Title = title;
+            subCategories = new List<SubCategory>();
+            items = new List<Item>();
+        }
+
         public string Title { get; set; }
 
         private List<SubCategory> subCategories;
