@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using IrRelevant.Model;
 
 namespace IrRelevant
 {
@@ -20,11 +21,26 @@ namespace IrRelevant
     /// </summary>
     public partial class MainWindow : Window
     {
+        List<Mode> modes;
+
         public MainWindow()
         {
             InitializeComponent();
 
-            
+            modes = new List<Mode>();
+            modes.Add(new Mode("Default"));
+            modes.Add(new Mode("TEst"));
+
+            ModeBox.ItemsSource = modes;
+            ModeBox.DisplayMemberPath = "Title";
+            ModeBox.SelectedIndex = 0;
+
+            ModeBox.SelectionChanged += ModeBox_SelectionChanged;
+        }
+
+        void ModeBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ShowMode(getCurrentMode());
         }
 
 
@@ -35,7 +51,23 @@ namespace IrRelevant
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            NotePanel.Children.Add(new ItemControl());
+            getCurrentMode().Items.Add(new Item());
+            ShowMode(getCurrentMode());
+        }
+
+        private Mode getCurrentMode()
+        {
+            return modes[ModeBox.SelectedIndex];
+        }
+
+
+        private void ShowMode(Mode mode)
+        {
+            NotePanel.Children.Clear();
+            foreach (Item item in mode.items)
+            {
+                NotePanel.Children.Add(new ItemControl(item));
+            }
         }
 
     }
