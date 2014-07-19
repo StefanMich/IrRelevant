@@ -33,5 +33,10 @@ namespace IrRelevant
             return "<img src=\"file://" + AppDomain.CurrentDomain.BaseDirectory + path + "\" width=\"" + Width + "px height=\"100px\"\"/>";
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            NotePanel.Children.Add(new ItemControl());
+        }
+
     }
 }
