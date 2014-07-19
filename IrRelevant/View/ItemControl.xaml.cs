@@ -23,7 +23,7 @@ namespace IrRelevant
     {
         private bool isExpanded = true;
         private double expandedHeight;
-
+        private Item item;
 
         public ItemControl()
         {
@@ -32,6 +32,21 @@ namespace IrRelevant
             IconDrawer.MouseUp += IconDrawer_MouseUp;
             textBox.GotFocus += textBox_GotFocus;
             Header.GotFocus += Header_GotFocus;
+
+            Header.TextChanged += Header_TextChanged;
+            textBox.TextChanged += textBox_TextChanged;
+        }
+
+        void textBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (item != null)
+                item.Content = new TextRange(textBox.Document.ContentStart, textBox.Document.ContentEnd).Text;
+        }
+
+        void Header_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (item != null)
+                item.Title = Header.Text;
         }
 
         void Header_GotFocus(object sender, RoutedEventArgs e)
@@ -48,34 +63,19 @@ namespace IrRelevant
         {
             Expand();
         }
-        public ItemControl(string title, string content, IconPlaceholder icon)
+        private ItemControl(string title, string content, IconEnum icon)
             : this()
         {
             Header.Text = title;
-            //Icon.Source = getBitmap(icon);
+            textBox.Document.Blocks.Clear();
+            textBox.Document.Blocks.Add(new Paragraph(new Run(content)));
+            IconDrawer.SetIcon(icon);
         }
 
-
-
-        private static BitmapImage getBitmap(IconPlaceholder icon)
+        public ItemControl(Item item)
+            : this(item.Title, item.Content, item.Icon)
         {
-            string uri;
-            switch (icon)
-            {
-                case IconPlaceholder.Book:
-                    uri = "book";
-                    break;
-                case IconPlaceholder.Video:
-                    uri = "video";
-                    break;
-                case IconPlaceholder.List:
-                    uri = "link";
-                    break;
-                default:
-                    uri = "unknown";
-                    break;
-            }
-            return (BitmapImage)Application.Current.Resources[uri];
+            this.item = item;
         }
 
         private void collapseButton_MouseUp(object sender, MouseButtonEventArgs e)
