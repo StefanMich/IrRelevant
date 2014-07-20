@@ -35,6 +35,13 @@ namespace IrRelevant
 
             Header.TextChanged += Header_TextChanged;
             textBox.TextChanged += textBox_TextChanged;
+            IconDrawer.IconChanged += IconDrawer_IconChanged;
+        }
+
+        void IconDrawer_IconChanged(IconDrawer id, IconDrawer.IconChangedArgs e)
+        {
+            if (item != null)
+                item.Icon = e.ChangedTo;
         }
 
         void textBox_TextChanged(object sender, TextChangedEventArgs e)

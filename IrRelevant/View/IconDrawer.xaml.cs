@@ -21,10 +21,10 @@ namespace IrRelevant
     /// </summary>
     public partial class IconDrawer : UserControl
     {
-        
+
         private IconEnum currentIcon;
         private bool drawerOpen = false;
-        
+
         public IconDrawer()
         {
             InitializeComponent();
@@ -33,9 +33,9 @@ namespace IrRelevant
 
             Stackpanel.Visibility = System.Windows.Visibility.Collapsed;
 
-            
         }
-        
+
+
         private void Icon_MouseUp(object sender, MouseButtonEventArgs e)
         {
             ToggleOpen();
@@ -71,13 +71,14 @@ namespace IrRelevant
         private void img_MouseUp(object sender, MouseButtonEventArgs e)
         {
             CloseDrawer();
-            Icon.Source = GetSource((sender as IconImage).IconEnum);
+            SetIcon((sender as IconImage).IconEnum);
         }
 
-        public void SetIcon (IconEnum icon)
+        public void SetIcon(IconEnum icon)
         {
             currentIcon = icon;
             Icon.Source = GetSource(icon);
+            IconChanged(this, new IconChangedArgs(icon));
         }
 
 
@@ -108,6 +109,20 @@ namespace IrRelevant
                 img.IconEnum = item;
                 Stackpanel.Children.Add(img);
             }
+        }
+
+        public delegate void ChangeHandler(IconDrawer id, IconChangedArgs e);
+
+        public event ChangeHandler IconChanged;
+
+        public class IconChangedArgs : EventArgs
+        {
+
+            public IconChangedArgs(IconEnum icon)
+            {
+                ChangedTo = icon;
+            }
+            public IconEnum ChangedTo { get; set; }
         }
 
     }
