@@ -4,10 +4,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:IrRelevant" x:Class="IrRelevant.ItemControl" 
-             mc:Ignorable="d" d:DesignWidth="300">
+             mc:Ignorable="d" Width="221">
     <Grid x:Name="BackgroundGrid">
-        <Grid x:Name="ContentGrid" HorizontalAlignment="Left" Height="267" Margin="0,25,0,0" VerticalAlignment="Top" Width="300">
-            <RichTextBox x:Name="textBox" HorizontalAlignment="Left" VerticalAlignment="Top" Background="{x:Null}" Height="257" BorderThickness="0,0,0,1" Margin="0,10,0,0" FontFamily="Arial">
+        <Grid x:Name="ContentGrid" HorizontalAlignment="Left" Margin="0,25,0,0" VerticalAlignment="Top" Width="221" Height="102">
+            <RichTextBox x:Name="textBox" HorizontalAlignment="Left" VerticalAlignment="Top" Background="{x:Null}" BorderThickness="0,0,0,1" FontFamily="Arial" Height="102" Width="221">
                 <FlowDocument>
                     <Paragraph>
                         <Run Language="da-dk" Text="Note"/>
@@ -16,10 +16,10 @@
             </RichTextBox>
 
         </Grid>
-        <Grid x:Name="headerGrid" HorizontalAlignment="Left" Height="25" VerticalAlignment="Top" Width="300">
-            <TextBox x:Name="Header" Text="New Note" HorizontalAlignment="Right" Margin="0,0,26,0" VerticalAlignment="Top" Height="25" Width="248" Background="{x:Null}" BorderThickness="0"/>
+        <Grid x:Name="headerGrid" HorizontalAlignment="Left" Height="25" VerticalAlignment="Top" Width="221">
+            <TextBox x:Name="Header" Text="New Note" HorizontalAlignment="Right" Margin="0,0,25,0" VerticalAlignment="Top" Height="25" Width="165" Background="{x:Null}" BorderThickness="0"/>
             <Image x:Name="collapseButton" HorizontalAlignment="Left" Height="25" VerticalAlignment="Top" Width="26" Source="/IrRelevant;component/Icons/collapse.png" MouseUp="collapseButton_MouseUp"/>
-            <local:IconDrawer x:Name="IconDrawer" HorizontalAlignment="Left" VerticalAlignment="Top" Height="152" Margin="274,0,-268,-127"/>
+            <local:IconDrawer x:Name="IconDrawer" HorizontalAlignment="Left" VerticalAlignment="Top" Height="152" Margin="196,0,-190,-127"/>
         </Grid>
     </Grid>
 </UserControl>

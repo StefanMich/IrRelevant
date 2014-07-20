@@ -2,18 +2,16 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:IrRelevant" x:Class="IrRelevant.MainWindow"
-        Title="MainWindow" Height="804.701" Width="861.921">
-    <Grid>
+        Title="MainWindow" Height="474.701" Width="289.698">
+    <Grid Margin="10,0,2,0">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="274*"/>
-            <ColumnDefinition Width="446*"/>
-            <ColumnDefinition Width="135*"/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <ScrollViewer HorizontalAlignment="Left" Height="444" Margin="59,25,0,0" VerticalAlignment="Top" Width="319" Grid.ColumnSpan="2">
-            <StackPanel x:Name="NotePanel" VerticalAlignment="Top" HorizontalAlignment="Left" Height="444" Width="319"/>
+        <ScrollViewer Height="370" Margin="10,37,10,0" VerticalAlignment="Top">
+            <StackPanel x:Name="NotePanel" VerticalAlignment="Top" HorizontalAlignment="Left" Width="221"/>
         </ScrollViewer>
-        <Button Content="Opret" Grid.Column="1" HorizontalAlignment="Left" Margin="295,229,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
-        <ComboBox x:Name="ModeBox" Grid.ColumnSpan="2" Grid.Column="1" HorizontalAlignment="Left" Margin="414,110,0,0" VerticalAlignment="Top" Width="120"/>
+        <Button Content="Opret" HorizontalAlignment="Left" Margin="10,412,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click" RenderTransformOrigin="2.112,10.119" Height="22"/>
+        <ComboBox x:Name="ModeBox" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="120" Height="22"/>
 
 
     </Grid>
