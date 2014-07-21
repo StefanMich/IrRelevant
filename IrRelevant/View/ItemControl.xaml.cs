@@ -23,7 +23,7 @@ namespace IrRelevant
     {
         private bool isExpanded = true;
         private double expandedHeight;
-        private Item item;
+        private Item currentitem;
 
         public ItemControl()
         {
@@ -40,20 +40,20 @@ namespace IrRelevant
 
         void IconDrawer_IconChanged(IconDrawer id, IconDrawer.IconChangedArgs e)
         {
-            if (item != null)
-                item.Icon = e.ChangedTo;
+            if (currentitem != null)
+                currentitem.Icon = e.ChangedTo;
         }
 
         void textBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (item != null)
-                item.Content = new TextRange(textBox.Document.ContentStart, textBox.Document.ContentEnd).Text;
+            if (currentitem != null)
+                currentitem.Content = new TextRange(textBox.Document.ContentStart, textBox.Document.ContentEnd).Text;
         }
 
         void Header_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (item != null)
-                item.Title = Header.Text;
+            if (currentitem != null)
+                currentitem.Title = Header.Text;
         }
 
         void Header_GotFocus(object sender, RoutedEventArgs e)
@@ -70,19 +70,22 @@ namespace IrRelevant
         {
             Expand();
         }
-        private ItemControl(string title, string content, IconEnum icon)
+        private ItemControl(string title, string content, IconEnum icon, bool expanded)
             : this()
         {
             Header.Text = title;
             textBox.Document.Blocks.Clear();
             textBox.Document.Blocks.Add(new Paragraph(new Run(content)));
             IconDrawer.SetIcon(icon);
+
+            if (!expanded)
+                Collapse();
         }
 
         public ItemControl(Item item)
-            : this(item.Title, item.Content, item.Icon)
+            : this(item.Title, item.Content, item.Icon, item.Expanded)
         {
-            this.item = item;
+            this.currentitem = item;
         }
 
         private void collapseButton_MouseUp(object sender, MouseButtonEventArgs e)
@@ -109,6 +112,9 @@ namespace IrRelevant
             {
                 item.Visibility = System.Windows.Visibility.Visible;
             }
+
+            if (currentitem != null)
+                currentitem.Expanded = true;
         }
 
         private void Collapse()
@@ -123,6 +129,9 @@ namespace IrRelevant
                 item.Visibility = System.Windows.Visibility.Collapsed;
             }
             IconDrawer.CloseDrawer();
+
+            if (currentitem != null)
+                currentitem.Expanded = false;
         }
     }
 }
